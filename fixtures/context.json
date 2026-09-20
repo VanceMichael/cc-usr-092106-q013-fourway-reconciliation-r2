@@ -1,0 +1,10 @@
+{
+  "domain": "fourway-reconciliation",
+  "version": 1,
+  "facts": [
+    "药品流通要求票账货款四匹配",
+    "造假者可能伪造公章和单据",
+    "传统人工比对费时且易受规避"
+  ],
+  "sample_id": "sample-013"
+}
