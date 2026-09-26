@@ -1,0 +1,84 @@
+{
+  "parties": [
+    {"party_id": "SUP-1", "name": "虚构-华西药械批发有限公司", "role": "supplier", "license_no": "SC-FAKE-0001"},
+    {"party_id": "SUP-2", "name": "虚构-川南医药贸易有限公司", "role": "supplier", "license_no": "SC-FAKE-0002"},
+    {"party_id": "PHA-1", "name": "虚构-康民大药房", "role": "pharmacy", "license_no": "YD-FAKE-0001"},
+    {"party_id": "PHA-2", "name": "虚构-仁心堂药房", "role": "pharmacy", "license_no": "YD-FAKE-0002"}
+  ],
+  "relations": [
+    {"relation_id": "REL-1", "supplier_id": "SUP-1", "pharmacy_id": "PHA-1", "valid_from": "2026-01-01", "valid_to": "2026-06-30"},
+    {"relation_id": "REL-2", "supplier_id": "SUP-2", "pharmacy_id": "PHA-2", "valid_from": "2026-01-01"}
+  ],
+  "products": [
+    {"product_id": "P-100", "unit": "盒", "per_box": 20},
+    {"product_id": "P-200", "unit": "盒"}
+  ],
+  "invoices": [
+    {"invoice_id": "INV-MISS", "version": 1, "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "issue_date": "2026-02-01", "template_id": "TPL-X",
+     "lines": [{"product_id": "P-100", "qty": {"value": 10}, "unit_price_fen": 500}]},
+
+    {"invoice_id": "INV-QTY", "version": 1, "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "issue_date": "2026-02-10", "template_id": "TPL-Y",
+     "lines": [{"product_id": "P-100", "qty": {"value": 100}, "unit_price_fen": 500}]},
+
+    {"invoice_id": "INV-DATE", "version": 1, "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "issue_date": "2026-07-15", "template_id": "TPL-Y",
+     "lines": [{"product_id": "P-200", "qty": {"value": 10}, "unit_price_fen": 800}]},
+
+    {"invoice_id": "INV-PARTY", "version": 1, "supplier_id": "SUP-2", "pharmacy_id": "PHA-1",
+     "issue_date": "2026-05-01", "template_id": "TPL-Y",
+     "lines": [{"product_id": "P-200", "qty": {"value": 5}, "unit_price_fen": 800}]},
+
+    {"invoice_id": "INV-PAYQ", "version": 1, "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "issue_date": "2026-04-01", "template_id": "TPL-Y",
+     "lines": [{"product_id": "P-100", "qty": {"value": 10}, "unit_price_fen": 500}]},
+
+    {"invoice_id": "INV-TPL1", "version": 1, "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "issue_date": "2026-03-01", "template_id": "TPL-COMMON",
+     "lines": [{"product_id": "P-200", "qty": {"value": 1}, "unit_price_fen": 800}]},
+    {"invoice_id": "INV-TPL2", "version": 1, "supplier_id": "SUP-2", "pharmacy_id": "PHA-2",
+     "issue_date": "2026-03-05", "template_id": "TPL-COMMON",
+     "lines": [{"product_id": "P-200", "qty": {"value": 1}, "unit_price_fen": 800}]}
+  ],
+  "delivery_notes": [
+    {"note_no": "DN-Q", "invoice_id": "INV-QTY", "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "ship_date": "2026-02-11", "lines": [{"product_id": "P-100", "qty": {"boxes": 4, "loose": 10}}]},
+
+    {"note_no": "DN-D", "invoice_id": "INV-DATE", "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "ship_date": "2026-07-10", "lines": [{"product_id": "P-200", "qty": {"value": 10}}]},
+
+    {"note_no": "DN-P", "invoice_id": "INV-PARTY", "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "ship_date": "2026-05-02", "lines": [{"product_id": "P-200", "qty": {"value": 5}}]},
+
+    {"note_no": "DN-PAYQ", "invoice_id": "INV-PAYQ", "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "ship_date": "2026-04-02", "lines": [{"product_id": "P-100", "qty": {"value": 10}}]},
+
+    {"note_no": "DN-T1", "invoice_id": "INV-TPL1", "supplier_id": "SUP-1", "pharmacy_id": "PHA-1",
+     "ship_date": "2026-03-02", "lines": [{"product_id": "P-200", "qty": {"value": 1}}]},
+    {"note_no": "DN-T2", "invoice_id": "INV-TPL2", "supplier_id": "SUP-2", "pharmacy_id": "PHA-2",
+     "ship_date": "2026-03-06", "lines": [{"product_id": "P-200", "qty": {"value": 1}}]}
+  ],
+  "ledger": [
+    {"entry_id": "LE-Q", "pharmacy_id": "PHA-1", "product_id": "P-100", "change": 70, "unit": "盒", "entry_date": "2026-02-12", "source_doc": "DN-Q"},
+    {"entry_id": "LE-D", "pharmacy_id": "PHA-1", "product_id": "P-200", "change": 10, "unit": "盒", "entry_date": "2026-07-09", "source_doc": "DN-D"},
+    {"entry_id": "LE-P", "pharmacy_id": "PHA-1", "product_id": "P-200", "change": 5, "unit": "盒", "entry_date": "2026-05-03", "source_doc": "DN-P"},
+    {"entry_id": "LE-PAYQ", "pharmacy_id": "PHA-1", "product_id": "P-100", "change": 10, "unit": "盒", "entry_date": "2026-04-03", "source_doc": "DN-PAYQ"},
+    {"entry_id": "LE-T1", "pharmacy_id": "PHA-1", "product_id": "P-200", "change": 1, "unit": "盒", "entry_date": "2026-03-03", "source_doc": "DN-T1"},
+    {"entry_id": "LE-T2", "pharmacy_id": "PHA-2", "product_id": "P-200", "change": 1, "unit": "盒", "entry_date": "2026-03-07", "source_doc": "DN-T2"}
+  ],
+  "stock_counts": [
+    {"count_id": "SC-1", "pharmacy_id": "PHA-1", "product_id": "P-100", "qty": {"value": 66}, "count_date": "2026-09-20"},
+    {"count_id": "SC-2", "pharmacy_id": "PHA-1", "product_id": "P-200", "qty": {"value": 16}, "count_date": "2026-09-20"},
+    {"count_id": "SC-3", "pharmacy_id": "PHA-2", "product_id": "P-200", "qty": {"value": 1}, "count_date": "2026-09-20"}
+  ],
+  "payments": [
+    {"payment_id": "PAY-Q", "payer_id": "PHA-1", "payee_id": "SUP-1", "amount_fen": 50000, "pay_date": "2026-03-01", "invoice_ids": ["INV-QTY"]},
+    {"payment_id": "PAY-D", "payer_id": "PHA-1", "payee_id": "SUP-1", "amount_fen": 8000, "pay_date": "2026-07-05", "invoice_ids": ["INV-DATE"]},
+    {"payment_id": "PAY-P", "payer_id": "PHA-2", "payee_id": "SUP-2", "amount_fen": 4000, "pay_date": "2026-05-10", "invoice_ids": ["INV-PARTY"]},
+    {"payment_id": "PAY-PAYQ", "payer_id": "PHA-1", "payee_id": "SUP-1", "amount_fen": 4500, "pay_date": "2026-04-20", "invoice_ids": ["INV-PAYQ"]},
+    {"payment_id": "PAY-T1", "payer_id": "PHA-1", "payee_id": "SUP-1", "amount_fen": 800, "pay_date": "2026-03-20", "invoice_ids": ["INV-TPL1"]},
+    {"payment_id": "PAY-T2", "payer_id": "PHA-2", "payee_id": "SUP-2", "amount_fen": 800, "pay_date": "2026-03-20", "invoice_ids": ["INV-TPL2"]},
+    {"payment_id": "PAY-ORPHAN", "payer_id": "PHA-1", "payee_id": "SUP-1", "amount_fen": 1000, "pay_date": "2026-05-30", "invoice_ids": []}
+  ]
+}

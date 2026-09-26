@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "四向核验证据资料包",
+  "description": "票、货、账、款四类原始依据的提交格式。所有数据均为虚构示例。金额单位为分；日期为 ISO 8601。发票更正只追加更高 version，不覆盖旧版。",
+  "type": "object",
+  "required": ["parties", "relations", "products", "invoices"],
+  "properties": {
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["party_id", "name", "role"],
+        "properties": {
+          "party_id": {"type": "string", "minLength": 1},
+          "name": {"type": "string", "minLength": 1},
+          "role": {"enum": ["supplier", "pharmacy"]},
+          "license_no": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "relations": {
+      "type": "array",
+      "description": "登记在册的采购关系，匹配候选只沿关系提出",
+      "items": {
+        "type": "object",
+        "required": ["relation_id", "supplier_id", "pharmacy_id", "valid_from"],
+        "properties": {
+          "relation_id": {"type": "string"},
+          "supplier_id": {"type": "string"},
+          "pharmacy_id": {"type": "string"},
+          "valid_from": {"type": "string", "format": "date"},
+          "valid_to": {"type": "string", "format": "date"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["product_id", "unit"],
+        "properties": {
+          "product_id": {"type": "string"},
+          "unit": {"type": "string", "description": "最小销售计量单位，如 盒"},
+          "per_box": {"type": "integer", "minimum": 1, "description": "每箱换算量，可选"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "invoices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "invoice_id", "version", "supplier_id", "pharmacy_id",
+          "issue_date", "lines", "template_id"
+        ],
+        "properties": {
+          "invoice_id": {"type": "string"},
+          "version": {"type": "integer", "minimum": 1},
+          "supplier_id": {"type": "string"},
+          "pharmacy_id": {"type": "string"},
+          "issue_date": {"type": "string", "format": "date"},
+          "payment_due": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "赊销约定付款日；检查基准日未过该日的未付款不报缺项"
+          },
+          "template_id": {"type": "string", "description": "票据模板标识，用于跨门店串用发现"},
+          "supersedes": {"type": ["string", "null"]},
+          "lines": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["product_id", "qty", "unit_price_fen"],
+              "properties": {
+                "product_id": {"type": "string"},
+                "qty": {"$ref": "#/$defs/qty"},
+                "unit_price_fen": {"type": "integer", "minimum": 0},
+                "batch_no": {"type": "string"}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "delivery_notes": {
+      "type": "array",
+      "description": "随货同行单；一张发票可对应多张，即分批送货",
+      "items": {
+        "type": "object",
+        "required": ["note_no", "invoice_id", "supplier_id", "pharmacy_id", "ship_date", "lines"],
+        "properties": {
+          "note_no": {"type": "string"},
+          "invoice_id": {"type": "string"},
+          "supplier_id": {"type": "string"},
+          "pharmacy_id": {"type": "string"},
+          "ship_date": {"type": "string", "format": "date"},
+          "lines": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["product_id", "qty"],
+              "properties": {
+                "product_id": {"type": "string"},
+                "qty": {"$ref": "#/$defs/qty"},
+                "unit_price_fen": {"type": "integer", "minimum": 0},
+                "batch_no": {"type": "string"}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "ledger": {
+      "type": "array",
+      "description": "进销存片段，change 正为入库、负为出库",
+      "items": {
+        "type": "object",
+        "required": ["entry_id", "pharmacy_id", "product_id", "change", "unit", "entry_date"],
+        "properties": {
+          "entry_id": {"type": "string"},
+          "pharmacy_id": {"type": "string"},
+          "product_id": {"type": "string"},
+          "change": {"type": "integer"},
+          "unit": {"type": "string"},
+          "entry_date": {"type": "string", "format": "date"},
+          "source_doc": {"type": "string", "description": "关联的发票号或同行单号"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "stock_counts": {
+      "type": "array",
+      "description": "现场箱盒清点，支持 boxes + loose 按商品 per_box 换算",
+      "items": {
+        "type": "object",
+        "required": ["count_id", "pharmacy_id", "product_id", "qty", "count_date"],
+        "properties": {
+          "count_id": {"type": "string"},
+          "pharmacy_id": {"type": "string"},
+          "product_id": {"type": "string"},
+          "qty": {"$ref": "#/$defs/qty"},
+          "count_date": {"type": "string", "format": "date"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "payments": {
+      "type": "array",
+      "description": "银行付款摘要；invoice_ids 多个表示合并付款",
+      "items": {
+        "type": "object",
+        "required": ["payment_id", "payer_id", "payee_id", "amount_fen", "pay_date"],
+        "properties": {
+          "payment_id": {"type": "string"},
+          "payer_id": {"type": "string"},
+          "payee_id": {"type": "string"},
+          "amount_fen": {"type": "integer", "minimum": 0},
+          "pay_date": {"type": "string", "format": "date"},
+          "invoice_ids": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "returns": {
+      "type": "array",
+      "description": "退货单，用于解释货↔账数量差",
+      "items": {
+        "type": "object",
+        "required": ["return_id", "invoice_id", "product_id", "qty", "return_date"],
+        "properties": {
+          "return_id": {"type": "string"},
+          "invoice_id": {"type": "string"},
+          "product_id": {"type": "string"},
+          "qty": {"$ref": "#/$defs/qty"},
+          "return_date": {"type": "string", "format": "date"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "allowances": {
+      "type": "array",
+      "description": "折让单，只减金额不减数量，用于解释款向差额",
+      "items": {
+        "type": "object",
+        "required": ["allowance_id", "invoice_id", "amount_fen", "allowance_date"],
+        "properties": {
+          "allowance_id": {"type": "string"},
+          "invoice_id": {"type": "string"},
+          "amount_fen": {"type": "integer", "minimum": 0},
+          "allowance_date": {"type": "string", "format": "date"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "qty": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["value"],
+          "properties": {
+            "value": {"type": "integer", "minimum": 0},
+            "unit": {"type": "string"}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["boxes"],
+          "properties": {
+            "boxes": {"type": "integer", "minimum": 0},
+            "loose": {"type": "integer", "minimum": 0},
+            "per_box": {"type": "integer", "minimum": 1},
+            "unit": {"type": "string"}
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}
