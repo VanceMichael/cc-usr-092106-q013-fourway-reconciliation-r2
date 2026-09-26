@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "人工检查决定与整改（检查方内部台账）",
+  "description": "只能由检查方追加。自动匹配只产出候选与差异，是否违规由人工决定；整改闭环挂在决定下。evidence_snapshot 固定作出决定时所依据的材料提交版本。",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "case_id",
+    "diff_id",
+    "conclusion",
+    "decided_by",
+    "decided_at",
+    "rationale",
+    "evidence_snapshot"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "diff_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conclusion": {
+      "type": "string",
+      "enum": [
+        "violation",
+        "no_violation",
+        "needs_followup"
+      ]
+    },
+    "decided_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decided_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_snapshot": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "submission_id",
+          "version",
+          "material_type",
+          "material_id"
+        ],
+        "properties": {
+          "submission_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "material_type": {
+            "type": "string"
+          },
+          "material_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "remediations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "remediation_id",
+          "description",
+          "due_date",
+          "status"
+        ],
+        "properties": {
+          "remediation_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "due_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "in_progress",
+              "closed"
+            ]
+          },
+          "closed_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

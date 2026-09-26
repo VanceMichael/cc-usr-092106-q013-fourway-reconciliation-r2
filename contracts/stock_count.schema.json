@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "现场箱盒清点记录",
+  "description": "现场按箱、盒清点。total_qty = box_spec * box_count + loose_qty，由提交方负责填写并对结果负责。",
+  "type": "object",
+  "required": [
+    "count_id",
+    "pharmacy_id",
+    "store_id",
+    "counted_at",
+    "inspector_name",
+    "items"
+  ],
+  "properties": {
+    "count_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pharmacy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "store_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "counted_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inspector_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "product_code",
+          "batch_no",
+          "box_spec",
+          "box_count",
+          "loose_qty",
+          "total_qty"
+        ],
+        "properties": {
+          "product_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "batch_no": {
+            "type": "string",
+            "minLength": 1
+          },
+          "box_spec": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "box_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "loose_qty": {
+            "type": "number",
+            "minimum": 0
+          },
+          "total_qty": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

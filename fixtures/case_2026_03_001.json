@@ -1,0 +1,480 @@
+{
+  "case_id": "case-2026-03-001",
+  "as_of": "2026-03-20",
+  "note": "全部为虚构主体、虚构票据与虚构账号，仅用于四向核验口径演示",
+  "parties": [
+    {"party_id": "sup-01", "name": "甲康医药有限公司", "tax_id": "910000FAKE01"},
+    {"party_id": "sup-02", "name": "乙达药业有限公司", "tax_id": "910000FAKE02"},
+    {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+    {"party_id": "insp-01", "name": "医保检查一组"}
+  ],
+  "stores": ["ST-001", "ST-002", "ST-003"],
+  "submissions": [
+    {
+      "submission_id": "sub-inv-0301",
+      "case_id": "case-2026-03-001",
+      "material_type": "invoice_pack",
+      "material_id": "inv-0301",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-01", "role": "supplier"},
+      "submitted_at": "2026-03-01T18:00:00",
+      "content": {
+        "invoice_id": "inv-0301",
+        "invoice_number": "INV-0301",
+        "invoice_code": "VAT04400",
+        "template_id": "TPL-01",
+        "invoice_date": "2026-03-01",
+        "seller": {"party_id": "sup-01", "name": "甲康医药有限公司", "tax_id": "910000FAKE01"},
+        "buyer": {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "lines": [
+          {"line_no": 1, "product_code": "P-AMX", "product_name": "阿莫西林胶囊", "unit": "盒",
+           "qty": 100, "unit_price": 10, "amount": 1000}
+        ],
+        "total_amount": 1000,
+        "has_copy_seal": true,
+        "has_original_seal": true,
+        "payment_terms_days": 30,
+        "delivery_notes": [
+          {"note_id": "dn-0301", "note_number": "DN-0301", "note_date": "2026-03-01",
+           "lines": [{"line_no": 1, "product_code": "P-AMX", "batch_no": "B2601", "qty": 100}]}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-inv-0302",
+      "case_id": "case-2026-03-001",
+      "material_type": "invoice_pack",
+      "material_id": "inv-0302",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-01", "role": "supplier"},
+      "submitted_at": "2026-03-04T18:00:00",
+      "content": {
+        "invoice_id": "inv-0302",
+        "invoice_number": "INV-0302",
+        "invoice_code": "VAT04400",
+        "template_id": "TPL-88",
+        "invoice_date": "2026-03-03",
+        "seller": {"party_id": "sup-01", "name": "甲康医药有限公司", "tax_id": "910000FAKE01"},
+        "buyer": {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "lines": [
+          {"line_no": 1, "product_code": "P-IBU", "product_name": "布洛芬片", "unit": "盒",
+           "qty": 200, "unit_price": 5, "amount": 1000}
+        ],
+        "total_amount": 1000,
+        "has_copy_seal": false,
+        "has_original_seal": true,
+        "payment_terms_days": 30,
+        "delivery_notes": [
+          {"note_id": "dn-0302a", "note_number": "DN-0302A", "note_date": "2026-03-03",
+           "lines": [{"line_no": 1, "product_code": "P-IBU", "batch_no": "B2602", "qty": 120}]},
+          {"note_id": "dn-0302b", "note_number": "DN-0302B", "note_date": "2026-03-04",
+           "lines": [{"line_no": 1, "product_code": "P-IBU", "batch_no": "B2602", "qty": 80}]}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-inv-0305",
+      "case_id": "case-2026-03-001",
+      "material_type": "invoice_pack",
+      "material_id": "inv-0305",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-01", "role": "supplier"},
+      "submitted_at": "2026-03-05T18:00:00",
+      "content": {
+        "invoice_id": "inv-0305",
+        "invoice_number": "INV-0305",
+        "invoice_code": "VAT04400",
+        "template_id": "TPL-88",
+        "invoice_date": "2026-03-05",
+        "seller": {"party_id": "sup-01", "name": "甲康医药有限公司", "tax_id": "910000FAKE01"},
+        "buyer": {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "lines": [
+          {"line_no": 1, "product_code": "P-AMX", "product_name": "阿莫西林胶囊", "unit": "盒",
+           "qty": 100, "unit_price": 10, "discount_amount": 100, "amount": 900}
+        ],
+        "total_amount": 900,
+        "has_copy_seal": true,
+        "has_original_seal": false,
+        "payment_terms_days": 30,
+        "delivery_notes": [
+          {"note_id": "dn-0305", "note_number": "DN-0305", "note_date": "2026-03-05",
+           "lines": [{"line_no": 1, "product_code": "P-AMX", "batch_no": "B2603", "qty": 100}]}
+        ],
+        "return_documents": [
+          {"doc_id": "rt-0305", "doc_number": "RT-0305", "doc_date": "2026-03-06", "amount": 200,
+           "lines": [{"product_code": "P-AMX", "batch_no": "B2603", "qty": 20}]}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-inv-0309",
+      "case_id": "case-2026-03-001",
+      "material_type": "invoice_pack",
+      "material_id": "inv-0309",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-02", "role": "supplier"},
+      "submitted_at": "2026-03-09T18:00:00",
+      "content": {
+        "invoice_id": "inv-0309",
+        "invoice_number": "INV-0309",
+        "invoice_code": "VAT04420",
+        "template_id": "TPL-02",
+        "invoice_date": "2026-03-09",
+        "seller": {"party_id": "sup-02", "name": "乙达药业有限公司", "tax_id": "910000FAKE02"},
+        "buyer": {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "lines": [
+          {"line_no": 1, "product_code": "P-AMX", "product_name": "阿莫西林胶囊", "unit": "盒",
+           "qty": 20, "unit_price": 10, "amount": 200}
+        ],
+        "total_amount": 200,
+        "has_copy_seal": false,
+        "has_original_seal": true,
+        "payment_terms_days": 30,
+        "delivery_notes": [
+          {"note_id": "dn-0309", "note_number": "DN-0309", "note_date": "2026-03-01",
+           "lines": [{"line_no": 1, "product_code": "P-AMX", "batch_no": "B2606", "qty": 20}]}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-inv-0310",
+      "case_id": "case-2026-03-001",
+      "material_type": "invoice_pack",
+      "material_id": "inv-0310",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-02", "role": "supplier"},
+      "submitted_at": "2026-03-10T18:00:00",
+      "content": {
+        "invoice_id": "inv-0310",
+        "invoice_number": "INV-0310",
+        "invoice_code": "VAT04420",
+        "template_id": "TPL-02",
+        "invoice_date": "2026-03-10",
+        "seller": {"party_id": "sup-02", "name": "乙达药业有限公司", "tax_id": "910000FAKE02"},
+        "buyer": {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "lines": [
+          {"line_no": 1, "product_code": "P-IBU", "product_name": "布洛芬片", "unit": "盒",
+           "qty": 60, "unit_price": 5, "amount": 300}
+        ],
+        "total_amount": 300,
+        "has_copy_seal": false,
+        "has_original_seal": true,
+        "payment_terms_days": 30,
+        "delivery_notes": [
+          {"note_id": "dn-0310", "note_number": "DN-0310", "note_date": "2026-03-10",
+           "lines": [{"line_no": 1, "product_code": "P-IBU", "batch_no": "B2604", "qty": 60}]}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-inv-0312",
+      "case_id": "case-2026-03-001",
+      "material_type": "invoice_pack",
+      "material_id": "inv-0312",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-01", "role": "supplier"},
+      "submitted_at": "2026-03-12T18:00:00",
+      "content": {
+        "invoice_id": "inv-0312",
+        "invoice_number": "INV-0312",
+        "invoice_code": "VAT04400",
+        "template_id": "TPL-88",
+        "invoice_date": "2026-03-12",
+        "seller": {"party_id": "sup-01", "name": "甲康医药有限公司", "tax_id": "910000FAKE01"},
+        "buyer": {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-002",
+        "lines": [
+          {"line_no": 1, "product_code": "P-AMX", "product_name": "阿莫西林胶囊", "unit": "盒",
+           "qty": 50, "unit_price": 10, "amount": 500}
+        ],
+        "total_amount": 500,
+        "has_copy_seal": true,
+        "has_original_seal": true,
+        "payment_terms_days": 30,
+        "delivery_notes": []
+      }
+    },
+    {
+      "submission_id": "sub-inv-0313",
+      "case_id": "case-2026-03-001",
+      "material_type": "invoice_pack",
+      "material_id": "inv-0313",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-01", "role": "supplier"},
+      "submitted_at": "2026-03-13T18:00:00",
+      "content": {
+        "invoice_id": "inv-0313",
+        "invoice_number": "INV-0313",
+        "invoice_code": "VAT04400",
+        "template_id": "TPL-88",
+        "invoice_date": "2026-03-13",
+        "seller": {"party_id": "sup-01", "name": "甲康医药有限公司", "tax_id": "910000FAKE01"},
+        "buyer": {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-003",
+        "lines": [
+          {"line_no": 1, "product_code": "P-AMX", "product_name": "阿莫西林胶囊", "unit": "盒",
+           "qty": 30, "unit_price": 10, "amount": 300}
+        ],
+        "total_amount": 300,
+        "has_copy_seal": false,
+        "has_original_seal": true,
+        "payment_terms_days": 60,
+        "delivery_notes": [
+          {"note_id": "dn-0313", "note_number": "DN-0313", "note_date": "2026-03-13",
+           "lines": [{"line_no": 1, "product_code": "P-AMX", "batch_no": "B2607", "qty": 30}]}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-inv-0315",
+      "case_id": "case-2026-03-001",
+      "material_type": "invoice_pack",
+      "material_id": "inv-0315",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-02", "role": "supplier"},
+      "submitted_at": "2026-03-08T18:00:00",
+      "content": {
+        "invoice_id": "inv-0315",
+        "invoice_number": "INV-0315",
+        "invoice_code": "VAT04420",
+        "template_id": "TPL-02",
+        "invoice_date": "2026-03-08",
+        "seller": {"party_id": "sup-02", "name": "乙达药业有限公司", "tax_id": "910000FAKE02"},
+        "buyer": {"party_id": "ph-01", "name": "仁心医药连锁有限公司", "tax_id": "910000FAKE03"},
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "lines": [
+          {"line_no": 1, "product_code": "P-IBU", "product_name": "布洛芬片", "unit": "盒",
+           "qty": 80, "unit_price": 5, "amount": 400}
+        ],
+        "total_amount": 400,
+        "has_copy_seal": false,
+        "has_original_seal": true,
+        "payment_terms_days": 30,
+        "delivery_notes": [
+          {"note_id": "dn-0315", "note_number": "DN-0315", "note_date": "2026-03-08",
+           "lines": [{"line_no": 1, "product_code": "P-IBU", "batch_no": "B2605", "qty": 80}]}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-ledger-st001-v1",
+      "case_id": "case-2026-03-001",
+      "material_type": "ledger_snippet",
+      "material_id": "ledger-st001",
+      "version": 1,
+      "submitted_by": {"party_id": "ph-01", "role": "pharmacy"},
+      "submitted_at": "2026-03-16T09:00:00",
+      "content": {
+        "snippet_id": "ledger-st001",
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "period_from": "2026-03-01",
+        "period_to": "2026-03-15",
+        "entries": [
+          {"entry_id": "e-bad-1", "entry_date": "2026-03-10", "direction": "purchase_in",
+           "ref_numbers": ["INV-0310"], "supplier_id": "sup-02",
+           "product_code": "P-IBU", "batch_no": "B2604", "qty": 50}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-ledger-st001-v2",
+      "case_id": "case-2026-03-001",
+      "material_type": "ledger_snippet",
+      "material_id": "ledger-st001",
+      "version": 2,
+      "supersedes": "sub-ledger-st001-v1",
+      "submitted_by": {"party_id": "ph-01", "role": "pharmacy"},
+      "submitted_at": "2026-03-16T11:00:00",
+      "content": {
+        "snippet_id": "ledger-st001",
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "period_from": "2026-03-01",
+        "period_to": "2026-03-20",
+        "entries": [
+          {"entry_id": "e-01", "entry_date": "2026-03-01", "direction": "purchase_in",
+           "ref_numbers": ["INV-0301"], "supplier_id": "sup-01",
+           "product_code": "P-AMX", "batch_no": "B2601", "qty": 100},
+          {"entry_id": "e-02", "entry_date": "2026-03-05", "direction": "sale_out",
+           "ref_numbers": [], "supplier_id": null,
+           "product_code": "P-AMX", "batch_no": "B2601", "qty": 30},
+          {"entry_id": "e-03", "entry_date": "2026-03-16", "direction": "sale_out",
+           "ref_numbers": [], "supplier_id": null,
+           "product_code": "P-AMX", "batch_no": "B2601", "qty": 20},
+          {"entry_id": "e-04", "entry_date": "2026-03-03", "direction": "purchase_in",
+           "ref_numbers": ["INV-0302"], "supplier_id": "sup-01",
+           "product_code": "P-IBU", "batch_no": "B2602", "qty": 120},
+          {"entry_id": "e-05", "entry_date": "2026-03-04", "direction": "purchase_in",
+           "ref_numbers": ["INV-0302"], "supplier_id": "sup-01",
+           "product_code": "P-IBU", "batch_no": "B2602", "qty": 80},
+          {"entry_id": "e-06", "entry_date": "2026-03-05", "direction": "purchase_in",
+           "ref_numbers": ["INV-0305"], "supplier_id": "sup-01",
+           "product_code": "P-AMX", "batch_no": "B2603", "qty": 100},
+          {"entry_id": "e-07", "entry_date": "2026-03-06", "direction": "return_out",
+           "ref_numbers": ["RT-0305"], "supplier_id": "sup-01",
+           "product_code": "P-AMX", "batch_no": "B2603", "qty": 20},
+          {"entry_id": "e-08", "entry_date": "2026-03-10", "direction": "sale_out",
+           "ref_numbers": [], "supplier_id": null,
+           "product_code": "P-AMX", "batch_no": "B2603", "qty": 10},
+          {"entry_id": "e-09", "entry_date": "2026-03-01", "direction": "purchase_in",
+           "ref_numbers": ["INV-0309"], "supplier_id": "sup-02",
+           "product_code": "P-AMX", "batch_no": "B2606", "qty": 20},
+          {"entry_id": "e-10", "entry_date": "2026-03-10", "direction": "purchase_in",
+           "ref_numbers": ["INV-0310"], "supplier_id": "sup-02",
+           "product_code": "P-IBU", "batch_no": "B2604", "qty": 60},
+          {"entry_id": "e-11", "entry_date": "2026-03-08", "direction": "purchase_in",
+           "ref_numbers": ["INV-0315"], "supplier_id": "sup-02",
+           "product_code": "P-IBU", "batch_no": "B2605", "qty": 80}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-ledger-st002-v1",
+      "case_id": "case-2026-03-001",
+      "material_type": "ledger_snippet",
+      "material_id": "ledger-st002",
+      "version": 1,
+      "submitted_by": {"party_id": "ph-01", "role": "pharmacy"},
+      "submitted_at": "2026-03-17T09:00:00",
+      "content": {
+        "snippet_id": "ledger-st002",
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-002",
+        "period_from": "2026-03-01",
+        "period_to": "2026-03-20",
+        "entries": [
+          {"entry_id": "e-201", "entry_date": "2026-03-02", "direction": "purchase_in",
+           "ref_numbers": ["INV-9999"], "supplier_id": "sup-01",
+           "product_code": "P-OLD", "batch_no": "B2599", "qty": 30}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-count-st001",
+      "case_id": "case-2026-03-001",
+      "material_type": "stock_count",
+      "material_id": "count-st001",
+      "version": 1,
+      "submitted_by": {"party_id": "insp-01", "role": "inspector"},
+      "submitted_at": "2026-03-15T16:00:00",
+      "content": {
+        "count_id": "count-st001",
+        "pharmacy_id": "ph-01",
+        "store_id": "ST-001",
+        "counted_at": "2026-03-15",
+        "inspector_name": "检查员赵（虚构）",
+        "items": [
+          {"product_code": "P-AMX", "batch_no": "B2601", "box_spec": 10, "box_count": 7,
+           "loose_qty": 0, "total_qty": 70},
+          {"product_code": "P-IBU", "batch_no": "B2602", "box_spec": 20, "box_count": 10,
+           "loose_qty": 0, "total_qty": 200},
+          {"product_code": "P-AMX", "batch_no": "B2603", "box_spec": 10, "box_count": 6,
+           "loose_qty": 10, "total_qty": 70},
+          {"product_code": "P-AMX", "batch_no": "B2606", "box_spec": 10, "box_count": 2,
+           "loose_qty": 0, "total_qty": 20},
+          {"product_code": "P-IBU", "batch_no": "B2604", "box_spec": 20, "box_count": 3,
+           "loose_qty": 0, "total_qty": 60},
+          {"product_code": "P-IBU", "batch_no": "B2605", "box_spec": 20, "box_count": 3,
+           "loose_qty": 0, "total_qty": 60},
+          {"product_code": "P-OLD", "batch_no": "B2599", "box_spec": 10, "box_count": 3,
+           "loose_qty": 0, "total_qty": 30}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-pay-01",
+      "case_id": "case-2026-03-001",
+      "material_type": "payment_summary",
+      "material_id": "pay-01",
+      "version": 1,
+      "submitted_by": {"party_id": "ph-01", "role": "pharmacy"},
+      "submitted_at": "2026-03-18T09:00:00",
+      "content": {
+        "summary_id": "pay-01",
+        "pharmacy_id": "ph-01",
+        "account_holder_name": "仁心医药连锁有限公司",
+        "transactions": [
+          {"txn_id": "txn-9001", "txn_date": "2026-03-07",
+           "payer_name": "仁心医药连锁有限公司",
+           "payee_name": "甲康医药有限公司", "payee_party_id": "sup-01",
+           "amount": 1700,
+           "allocations": [
+             {"invoice_number": "INV-0301", "amount": 1000},
+             {"invoice_number": "INV-0305", "amount": 700}
+           ]},
+          {"txn_id": "txn-9002", "txn_date": "2026-03-05",
+           "payer_name": "仁心医药连锁有限公司",
+           "payee_name": "甲康医药有限公司", "payee_party_id": "sup-01",
+           "amount": 1000,
+           "allocations": [{"invoice_number": "INV-0302", "amount": 1000}]},
+          {"txn_id": "txn-9003", "txn_date": "2026-03-13",
+           "payer_name": "仁心医药连锁有限公司",
+           "payee_name": "张某（卡号6228****FAKE）", "payee_party_id": null,
+           "amount": 500,
+           "allocations": [{"invoice_number": "INV-0312", "amount": 500}]},
+          {"txn_id": "txn-9004", "txn_date": "2026-03-09",
+           "payer_name": "李某（个人账户）",
+           "payee_name": "乙达药业有限公司", "payee_party_id": "sup-02",
+           "amount": 400,
+           "allocations": [{"invoice_number": "INV-0315", "amount": 400}]},
+          {"txn_id": "txn-9005", "txn_date": "2026-03-10",
+           "payer_name": "仁心医药连锁有限公司",
+           "payee_name": "乙达药业有限公司", "payee_party_id": "sup-02",
+           "amount": 200,
+           "allocations": [{"invoice_number": "INV-0309", "amount": 200}]},
+          {"txn_id": "txn-9900", "txn_date": "2026-03-14",
+           "payer_name": "仁心医药连锁有限公司",
+           "payee_name": "甲康医药有限公司", "payee_party_id": "sup-01",
+           "amount": 999,
+           "allocations": [{"invoice_number": "INV-8888", "amount": 999}]}
+        ]
+      }
+    },
+    {
+      "submission_id": "sub-ex-01",
+      "case_id": "case-2026-03-001",
+      "material_type": "explanation",
+      "material_id": "ex-01",
+      "version": 1,
+      "submitted_by": {"party_id": "sup-01", "role": "supplier"},
+      "submitted_at": "2026-03-18T15:00:00",
+      "visibility": "internal",
+      "content": {
+        "explanation_id": "ex-01",
+        "regarding_refs": ["INV-0312"],
+        "text": "随货同行单原件在物流途中，预计两日内补交（虚构说明）。",
+        "created_at": "2026-03-18T15:00:00"
+      }
+    },
+    {
+      "submission_id": "sub-ex-02",
+      "case_id": "case-2026-03-001",
+      "material_type": "explanation",
+      "material_id": "ex-02",
+      "version": 1,
+      "submitted_by": {"party_id": "ph-01", "role": "pharmacy"},
+      "submitted_at": "2026-03-19T09:30:00",
+      "visibility": "shared_counterparty",
+      "content": {
+        "explanation_id": "ex-02",
+        "regarding_refs": ["INV-0310"],
+        "text": "该批按 30 天账期结算，将在账期内对公支付（虚构说明）。",
+        "created_at": "2026-03-19T09:30:00"
+      }
+    }
+  ]
+}

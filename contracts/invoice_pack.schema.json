@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "发票与随货同行单（同一提交版本）",
+  "description": "发票与其随货同行单作为一个材料版本提交。has_copy_seal / has_original_seal 仅记录票面事实，不作为核验依据。分批送货可挂多张同行单；退货凭证（红字票/退货单）随票提交。",
+  "type": "object",
+  "required": [
+    "invoice_id",
+    "invoice_number",
+    "invoice_code",
+    "template_id",
+    "invoice_date",
+    "seller",
+    "buyer",
+    "pharmacy_id",
+    "store_id",
+    "lines",
+    "total_amount",
+    "has_copy_seal",
+    "has_original_seal",
+    "payment_terms_days",
+    "delivery_notes"
+  ],
+  "properties": {
+    "invoice_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "invoice_number": {
+      "type": "string",
+      "minLength": 1
+    },
+    "invoice_code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "template_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "票据模板指纹（发票代码+版式特征），用于跨门店串并"
+    },
+    "invoice_date": {
+      "type": "string",
+      "minLength": 1
+    },
+    "seller": {
+      "$ref": "#/$defs/party"
+    },
+    "buyer": {
+      "$ref": "#/$defs/party"
+    },
+    "pharmacy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "store_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lines": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "line_no",
+          "product_code",
+          "product_name",
+          "unit",
+          "qty",
+          "unit_price",
+          "amount"
+        ],
+        "properties": {
+          "line_no": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "product_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "product_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "qty": {
+            "type": "number",
+            "minimum": 0
+          },
+          "unit_price": {
+            "type": "number",
+            "minimum": 0
+          },
+          "discount_amount": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "total_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "价税合计，已扣折让、未扣退货"
+    },
+    "has_copy_seal": {
+      "type": "boolean"
+    },
+    "has_original_seal": {
+      "type": "boolean"
+    },
+    "payment_terms_days": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "delivery_notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "note_id",
+          "note_number",
+          "note_date",
+          "lines"
+        ],
+        "properties": {
+          "note_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "note_number": {
+            "type": "string",
+            "minLength": 1
+          },
+          "note_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lines": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "line_no",
+                "product_code",
+                "batch_no",
+                "qty"
+              ],
+              "properties": {
+                "line_no": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "product_code": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "batch_no": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "qty": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "return_documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "doc_id",
+          "doc_number",
+          "doc_date",
+          "amount",
+          "lines"
+        ],
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "doc_number": {
+            "type": "string",
+            "minLength": 1
+          },
+          "doc_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "lines": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "product_code",
+                "batch_no",
+                "qty"
+              ],
+              "properties": {
+                "product_code": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "batch_no": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "qty": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "party": {
+      "type": "object",
+      "required": [
+        "party_id",
+        "name",
+        "tax_id"
+      ],
+      "properties": {
+        "party_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tax_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

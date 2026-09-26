@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "银行付款摘要",
+  "description": "一笔交易可对应多张发票（合并付款），allocations 显式给出分摊；无分摊时金额等于各票应付合计亦可匹配。收款方与销方不一致按主体差异呈现，不自动定性。",
+  "type": "object",
+  "required": [
+    "summary_id",
+    "pharmacy_id",
+    "account_holder_name",
+    "transactions"
+  ],
+  "properties": {
+    "summary_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pharmacy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "account_holder_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "transactions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "txn_id",
+          "txn_date",
+          "payer_name",
+          "payee_name",
+          "amount",
+          "allocations"
+        ],
+        "properties": {
+          "txn_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "txn_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "payer_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "payee_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "payee_party_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "收款方为非对公账户时填 null，触发主体不一致提示"
+          },
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "allocations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "invoice_number",
+                "amount"
+              ],
+              "properties": {
+                "invoice_number": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "amount": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

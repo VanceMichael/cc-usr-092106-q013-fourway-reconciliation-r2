@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "情况说明",
+  "description": "供应商或药店提交的说明。信封 visibility=internal 时仅检查方与提交方可见；shared_counterparty 时可向采购相对方公开。",
+  "type": "object",
+  "required": [
+    "explanation_id",
+    "regarding_refs",
+    "text",
+    "created_at"
+  ],
+  "properties": {
+    "explanation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "regarding_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "进销存台账片段",
+  "description": "药店提交的台账只截取与本次检查相关的期间与品种。更正以新版本片段追加，不得覆盖旧片段。",
+  "type": "object",
+  "required": [
+    "snippet_id",
+    "pharmacy_id",
+    "store_id",
+    "period_from",
+    "period_to",
+    "entries"
+  ],
+  "properties": {
+    "snippet_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pharmacy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "store_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "period_from": {
+      "type": "string",
+      "minLength": 1
+    },
+    "period_to": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "entry_id",
+          "entry_date",
+          "direction",
+          "ref_numbers",
+          "supplier_id",
+          "product_code",
+          "batch_no",
+          "qty"
+        ],
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entry_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "purchase_in",
+              "return_out",
+              "sale_out"
+            ]
+          },
+          "ref_numbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "supplier_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "product_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "batch_no": {
+            "type": "string",
+            "minLength": 1
+          },
+          "qty": {
+            "type": "number",
+            "minimum": 0
+          },
+          "balance_after": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

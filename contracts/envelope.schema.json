@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "材料提交信封（只追加版本）",
+  "description": "所有外部材料都以信封提交。同一 material_id 的更正必须以更大 version 追加，旧版本永久保留，匹配引擎默认只读最新版本。",
+  "type": "object",
+  "required": [
+    "submission_id",
+    "case_id",
+    "material_type",
+    "material_id",
+    "version",
+    "submitted_by",
+    "submitted_at",
+    "content"
+  ],
+  "properties": {
+    "submission_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "material_type": {
+      "type": "string",
+      "enum": [
+        "invoice_pack",
+        "ledger_snippet",
+        "stock_count",
+        "payment_summary",
+        "explanation"
+      ]
+    },
+    "material_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "submitted_by": {
+      "type": "object",
+      "required": [
+        "party_id",
+        "role"
+      ],
+      "properties": {
+        "party_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "supplier",
+            "pharmacy",
+            "inspector"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "submitted_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "internal",
+        "shared_counterparty"
+      ],
+      "default": "internal"
+    },
+    "content": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}
